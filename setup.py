@@ -15,8 +15,6 @@ setup(
     },
     test_suite='test',
     install_requires=[
-    ],
-    tests_require=[
         'behave',
     ],
     dependency_links=[],
