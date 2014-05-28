@@ -1,5 +1,4 @@
 import rarfile
-import os
 import tempfile
 
 class RARFile(object):
@@ -17,7 +16,7 @@ class RARFile(object):
 
         file = input['filename']
 
-        tempfile.mkdtemp()
+        extract_path = tempfile.mkdtemp()
         rf = rarfile.RarFile(file)
         rf.extractall(self, extract_path, None, None)
 
