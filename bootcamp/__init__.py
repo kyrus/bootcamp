@@ -62,10 +62,10 @@ class Extractomatic(object):
         elif file_type == 'gpg':
             logging.info('Unarchiving as a [%s] file', file_type)
             # proc_output = GPGExtractor.GPGExtractor().process(proc_input)
-        elif file_type == 'rar':
+        elif file_type == 'RAR archive data':
             logging.info('Unarchiving as a [%s] file', file_type)
             # proc_output = zip_extractor.ZipExtractor().process(proc_input)
-        elif file_type == '7zip':
+        elif file_type == '7-zip archive data':
             logging.info('Unarchiving as a [%s] file', file_type)
             # proc_output = zip_extractor.ZipExtractor().process(proc_input)
         else:
