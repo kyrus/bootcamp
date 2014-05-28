@@ -46,6 +46,3 @@ def expect_directory(context):
     assert os.path.isfile(os.path.join(context.extraction_result['extracted_files_directory'], 'testfile.txt'))
 
 
-@then(u'I should get an error message')
-def should_get_error(context):
-    assert False
