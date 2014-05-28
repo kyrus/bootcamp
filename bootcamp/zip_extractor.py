@@ -11,8 +11,11 @@ class ZipExtractor(object):
 
     def process(self, input):
         zipFile = zipfile.ZipFile(input['filename'])
-        if not zipFile.is_zipfile:
+        if not zipFile.is_zipfile():
         	raise TypeError('File is not a zip file')
         tmpDir = tempfile.mkdtemp(prefix='tmp',suffix='unzip')
-        zipFile.extractall(tmpDir)
+        if input['password'] is not None:
+        	zipFile.extractall(tmpDir,pwd=input['password'])
+        else:
+        	zipFile.extractall(tmpDir)
         return {'extracted_files_directory':tmpDir}
