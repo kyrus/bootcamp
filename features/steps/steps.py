@@ -47,4 +47,3 @@ def expect_directory(context):
     assert 'extracted_files_directory' in context.extraction_result
     assert os.path.isdir(context.extraction_result['extracted_files_directory'])
     assert os.path.isfile(os.path.join(context.extraction_result['extracted_files_directory'], 'testfile.txt'))
-
