@@ -34,9 +34,18 @@ class Extractomatic(object):
         if password is not None:
             proc_input['password'] = password
 
+        proc_output = self.get_extractor(fullpath).process(proc_input)
+
+        logging.info('Extracted files are in [%s]', proc_output['extracted_files_directory'])
+        file_proc_output = file_counter.FileCounter().process(proc_output)
+
+        logging.info('Extracted %s files and %s directories', file_proc_output['extracted_file_count'],
+                     file_proc_output['extracted_subdirectory_count'])
+
+    def get_extractor(self, fullpath):
         name, extension = os.path.splitext(fullpath)
 
-        logging.info('Extracting [%s] with extension [%s]', archive, extension)
+        logging.info('Extracting [%s] with extension [%s]', fullpath, extension)
 
         output = ''
         with lcd(THIS_DIR):
@@ -55,34 +64,24 @@ class Extractomatic(object):
 
         logging.debug('file type: %s', file_type)
 
-        proc_output = {}
-        proc = None
         if file_type == 'Zip archive data':
             logging.info('Unarchiving as a [%s] file', file_type)
-            proc = zip_extractor.ZipExtractor()
+            return zip_extractor.ZipExtractor()
         elif file_type == 'gzip compressed data':
             logging.info('Unarchiving as a [%s] file', file_type)
-            proc = GzipExtractor.GzipExtractor()
+            return GzipExtractor.GzipExtractor()
         elif file_type == 'POSIX tar archive':
             logging.info('Unarchiving as a [%s] file', file_type)
-            proc = tar_extractor.TarExtractor()
+            return tar_extractor.TarExtractor()
         elif file_type == 'data' and extension == '.gpg':
             logging.info('Unarchiving as a GPG file')
-            # proc = GPGExtractor.GPGExtractor()
+            # return GPGExtractor.GPGExtractor()
         elif file_type == 'RAR archive data':
             logging.info('Unarchiving as a [%s] file', file_type)
-            proc = rar_extractor.RARFile()
+            return rar_extractor.RARFile()
         elif file_type == '7-zip archive data':
             logging.info('Unarchiving as a [%s] file', file_type)
-            # proc = seven_zip_extractor.SevenZipExtractor()
+            # return seven_zip_extractor.SevenZipExtractor()
         else:
             logging.error('Error: unknown/unsupported file type of [%s]', file_type)
-            return
-
-        proc_output = proc.process(proc_input)
-
-        logging.info('Extracted files are in [%s]', proc_output['extracted_files_directory'])
-        file_proc_output = file_counter.FileCounter().process(proc_output)
-
-        logging.info('Extracted %s files and %s directories', file_proc_output['extracted_file_count'],
-                     file_proc_output['extracted_subdirectory_count'])
+            return None
