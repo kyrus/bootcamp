@@ -56,27 +56,30 @@ class Extractomatic(object):
         logging.debug('file type: %s', file_type)
 
         proc_output = {}
+        proc = None
         if file_type == 'Zip archive data':
             logging.info('Unarchiving as a [%s] file', file_type)
-            proc_output = zip_extractor.ZipExtractor().process(proc_input)
+            proc = zip_extractor.ZipExtractor()
         elif file_type == 'gzip compressed data':
             logging.info('Unarchiving as a [%s] file', file_type)
-            proc_output = GzipExtractor.GzipExtractor().process(proc_input)
+            proc = GzipExtractor.GzipExtractor()
         elif file_type == 'POSIX tar archive':
             logging.info('Unarchiving as a [%s] file', file_type)
-            proc_output = tar_extractor.TarExtractor().process(proc_input)
+            proc = tar_extractor.TarExtractor()
         elif file_type == 'data' and extension == '.gpg':
             logging.info('Unarchiving as a GPG file')
-            # proc_output = GPGExtractor.GPGExtractor().process(proc_input)
+            # proc = GPGExtractor.GPGExtractor()
         elif file_type == 'RAR archive data':
             logging.info('Unarchiving as a [%s] file', file_type)
-            proc_output = rar_extractor.RARFile().process(proc_input)
+            proc = rar_extractor.RARFile()
         elif file_type == '7-zip archive data':
             logging.info('Unarchiving as a [%s] file', file_type)
-            # proc_output = seven_zip_extractor.SevenZipExtractor().process(proc_input)
+            # proc = seven_zip_extractor.SevenZipExtractor()
         else:
             logging.error('Error: unknown/unsupported file type of [%s]', file_type)
             return
+
+        proc_output = proc.process(proc_input)
 
         logging.info('Extracted files are in [%s]', proc_output['extracted_files_directory'])
         file_proc_output = file_counter.FileCounter().process(proc_output)
