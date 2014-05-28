@@ -17,7 +17,6 @@ class RARFile(object):
 
         file = input['filename']
 
-        os.mkdir(extract_path, None)
         tempfile.mkdtemp()
         rf = rarfile.RarFile(file)
         rf.extractall(self, extract_path, None, None)
