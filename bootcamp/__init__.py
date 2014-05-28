@@ -2,6 +2,7 @@ import logging
 import os
 import zip_extractor
 import gzip_extractor
+import rar_extractor
 
 from utils import *
 
@@ -65,7 +66,7 @@ class Extractomatic(object):
             # proc_output = GPGExtractor.GPGExtractor().process(proc_input)
         elif file_type == 'RAR archive data':
             logging.info('Unarchiving as a [%s] file', file_type)
-            # proc_output = zip_extractor.ZipExtractor().process(proc_input)
+            proc_output = rar_extractor.RARFile().process(proc_input)
         elif file_type == '7-zip archive data':
             logging.info('Unarchiving as a [%s] file', file_type)
             # proc_output = zip_extractor.ZipExtractor().process(proc_input)
