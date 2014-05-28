@@ -3,6 +3,7 @@ This is awesome
 
 #Pre-reqs
 - install unrar on system
+- install p7zip on system
 
 ## Setup
 
