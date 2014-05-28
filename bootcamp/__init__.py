@@ -1,6 +1,6 @@
 import logging
 import os
-import bootcamp
+import zip_extractor
 
 from utils import *
 
@@ -50,17 +50,26 @@ class Extractomatic(object):
         logging.debug('file type: %s', file_type)
 
         proc_output = {}
-        # if file_type == 'zip':
-        #     # proc_output = bootcamp.ZipExtractor().process(proc_input)
-        # elif file_type == 'awef':
-        #     # proc_output = bootcamp.ZipExtractor().process(proc_input)
-        # elif file_type == 'awef':
-        #     # proc_output = bootcamp.ZipExtractor().process(proc_input)
-        # elif file_type == 'awef':
-        #     # proc_output = bootcamp.ZipExtractor().process(proc_input)
-        # elif file_type == 'awef':
-        #     # proc_output = bootcamp.ZipExtractor().process(proc_input)
-        # elif file_type == 'awef':
-        #     # proc_output = bootcamp.ZipExtractor().process(proc_input)
+        if file_type == 'zip':
+            logging.info('Unarchiving as a [%s] file', file_type)
+            proc_output = zip_extractor.ZipExtractor().process(proc_input)
+        elif file_type == 'awef':
+            logging.info('Unarchiving as a [%s] file', file_type)
+            # proc_output = bootcamp.ZipExtractor().process(proc_input)
+        elif file_type == 'awef':
+            logging.info('Unarchiving as a [%s] file', file_type)
+            # proc_output = bootcamp.ZipExtractor().process(proc_input)
+        elif file_type == 'awef':
+            logging.info('Unarchiving as a [%s] file', file_type)
+            # proc_output = bootcamp.ZipExtractor().process(proc_input)
+        elif file_type == 'awef':
+            logging.info('Unarchiving as a [%s] file', file_type)
+            # proc_output = bootcamp.ZipExtractor().process(proc_input)
+        elif file_type == 'awef':
+            logging.info('Unarchiving as a [%s] file', file_type)
+            # proc_output = bootcamp.ZipExtractor().process(proc_input)
+        else:
+            logging.error('Error: unknown/unsupported file type of [%s]', file_type)
+            return
 
         logging.info('Extracted files are in [%s]', proc_output['extracted_files_directory'])
