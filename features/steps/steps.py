@@ -33,6 +33,8 @@ def run_extractor(context, extractor_type):
         extractor = bootcamp.zip_extractor.ZipExtractor()
     elif extractor_type == 'Gzip':
         extractor = bootcamp.GzipExtractor.GzipExtractor()
+    elif extractor_type == '7zip':
+        extractor = bootcamp.seven_zip_extractor.SevenZipExtractor()
     else:
         raise Exception('Unknown extractor type')
 
@@ -44,5 +46,3 @@ def expect_directory(context):
     assert 'extracted_files_directory' in context.extraction_result
     assert os.path.isdir(context.extraction_result['extracted_files_directory'])
     assert os.path.isfile(os.path.join(context.extraction_result['extracted_files_directory'], 'testfile.txt'))
-
-

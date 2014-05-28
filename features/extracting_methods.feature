@@ -9,4 +9,4 @@ Examples:
     |  type            |  extractor |
     |  zip             |  Zip       |
     |  gz              |  Gzip      |
-
+    |  7z              |  7zip      |

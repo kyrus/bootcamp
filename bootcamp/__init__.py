@@ -5,6 +5,7 @@ import GzipExtractor
 import rar_extractor
 import tar_extractor
 import file_counter
+import seven_zip_extractor
 
 from utils import *
 
