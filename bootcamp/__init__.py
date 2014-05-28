@@ -1,6 +1,7 @@
 import logging
 import os
 import zip_extractor
+import gzip_extractor
 
 from utils import *
 
@@ -55,7 +56,7 @@ class Extractomatic(object):
             proc_output = zip_extractor.ZipExtractor().process(proc_input)
         elif file_type == 'gzip compressed data':
             logging.info('Unarchiving as a [%s] file', file_type)
-            # proc_output = gzip_extractor.gzip_extractor().process(proc_input)
+            proc_output = gzip_extractor.gzip_extractor().process(proc_input)
         elif file_type == 'POSIX tar archive':
             logging.info('Unarchiving as a [%s] file', file_type)
             # proc_output = zip_extractor.ZipExtractor().process(proc_input)
