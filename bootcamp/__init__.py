@@ -1,5 +1,6 @@
 import logging
 import os
+import bootcamp
 
 from utils import *
 
@@ -43,8 +44,23 @@ class Extractomatic(object):
         # file_output should now look like this:
         # Zip archive data, at least v2.0 to extract
         logging.debug('file command split output: %s', file_output)
+
         file_type = file_output.split(' ')[0].lower()
+
         logging.debug('file type: %s', file_type)
+
+        proc_output = {}
         # if file_type == 'zip':
-        #
+        #     # proc_output = bootcamp.ZipExtractor().process(proc_input)
         # elif file_type == 'awef':
+        #     # proc_output = bootcamp.ZipExtractor().process(proc_input)
+        # elif file_type == 'awef':
+        #     # proc_output = bootcamp.ZipExtractor().process(proc_input)
+        # elif file_type == 'awef':
+        #     # proc_output = bootcamp.ZipExtractor().process(proc_input)
+        # elif file_type == 'awef':
+        #     # proc_output = bootcamp.ZipExtractor().process(proc_input)
+        # elif file_type == 'awef':
+        #     # proc_output = bootcamp.ZipExtractor().process(proc_input)
+
+        logging.info('Extracted files are in [%s]', proc_output['extracted_files_directory'])
