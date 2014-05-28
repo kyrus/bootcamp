@@ -18,7 +18,7 @@ class RARFile(object):
 
         extract_path = tempfile.mkdtemp()
         rf = rarfile.RarFile(file)
-        rf.extractall(self, extract_path, None, None)
+        rf.extractall(extract_path, None, None)
 
 
         return {
