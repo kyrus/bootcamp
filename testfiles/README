@@ -1,0 +1,2 @@
+Files test1.* all contain a single file, testfile.txt
+gpg file created using bob.gpg, passphrase for bob.key is 'a' because bob is bad
