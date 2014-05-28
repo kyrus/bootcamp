@@ -4,6 +4,7 @@ import zip_extractor
 import GzipExtractor
 import rar_extractor
 import tar_extractor
+import file_counter
 
 from utils import *
 
@@ -16,7 +17,7 @@ class Extractomatic(object):
     those files in a temporary directory
     """
 
-    def extract_files(self, archive):
+    def extract_file(self, archive, password=None):
         """
         Extracts files from the given archive
         """
@@ -30,6 +31,8 @@ class Extractomatic(object):
 
         proc_input = {}
         proc_input['filename'] = fullpath
+        if password is not None:
+            proc_input['password'] = password
 
         name, extension = os.path.splitext(fullpath)
 
@@ -70,9 +73,13 @@ class Extractomatic(object):
             proc_output = rar_extractor.RARFile().process(proc_input)
         elif file_type == '7-zip archive data':
             logging.info('Unarchiving as a [%s] file', file_type)
-            # proc_output = zip_extractor.ZipExtractor().process(proc_input)
+            # proc_output = seven_zip_extractor.SevenZipExtractor().process(proc_input)
         else:
             logging.error('Error: unknown/unsupported file type of [%s]', file_type)
             return
 
         logging.info('Extracted files are in [%s]', proc_output['extracted_files_directory'])
+        file_proc_output = file_counter.FileCounter().process(proc_output)
+
+        logging.info('Extracted %s files and %s directories', file_proc_output['extracted_file_count'],
+                     file_proc_output['extracted_subdirectory_count'])
