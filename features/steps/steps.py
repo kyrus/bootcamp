@@ -29,10 +29,13 @@ def have_file_type(context, file_type):
 
 @when(u'I run the extractor "(?P<extractor_type>.*)"')
 def run_extractor(context, extractor_type):
+    print(extractor_type)
     if extractor_type == 'Zip':
         extractor = bootcamp.zip_extractor.ZipExtractor()
     elif extractor_type == 'Gzip':
         extractor = bootcamp.GzipExtractor.GzipExtractor()
+    elif extractor_type == '7zip':
+        extractor = bootcamp.seven_zip_extractor.SevenZipExtractor()
     else:
         raise Exception('Unknown extractor type')
 
@@ -45,7 +48,3 @@ def expect_directory(context):
     assert os.path.isdir(context.extraction_result['extracted_files_directory'])
     assert os.path.isfile(os.path.join(context.extraction_result['extracted_files_directory'], 'testfile.txt'))
 
-
-@then(u'I should get an error message')
-def should_get_error(context):
-    assert False
