@@ -45,29 +45,29 @@ class Extractomatic(object):
         # Zip archive data, at least v2.0 to extract
         logging.debug('file command split output: %s', file_output)
 
-        file_type = file_output.split(' ')[0].lower()
+        file_type = file_output.split(',')[0]
 
         logging.debug('file type: %s', file_type)
 
         proc_output = {}
-        if file_type == 'zip':
+        if file_type == 'Zip archive data':
             logging.info('Unarchiving as a [%s] file', file_type)
             proc_output = zip_extractor.ZipExtractor().process(proc_input)
-        elif file_type == 'awef':
+        elif file_type == 'gzip compressed data':
             logging.info('Unarchiving as a [%s] file', file_type)
-            # proc_output = bootcamp.ZipExtractor().process(proc_input)
-        elif file_type == 'awef':
+            # proc_output = gzip_extractor.gzip_extractor().process(proc_input)
+        elif file_type == 'POSIX tar archive':
             logging.info('Unarchiving as a [%s] file', file_type)
-            # proc_output = bootcamp.ZipExtractor().process(proc_input)
-        elif file_type == 'awef':
+            # proc_output = zip_extractor.ZipExtractor().process(proc_input)
+        elif file_type == 'gpg':
             logging.info('Unarchiving as a [%s] file', file_type)
-            # proc_output = bootcamp.ZipExtractor().process(proc_input)
-        elif file_type == 'awef':
+            # proc_output = GPGExtractor.GPGExtractor().process(proc_input)
+        elif file_type == 'rar':
             logging.info('Unarchiving as a [%s] file', file_type)
-            # proc_output = bootcamp.ZipExtractor().process(proc_input)
-        elif file_type == 'awef':
+            # proc_output = zip_extractor.ZipExtractor().process(proc_input)
+        elif file_type == '7zip':
             logging.info('Unarchiving as a [%s] file', file_type)
-            # proc_output = bootcamp.ZipExtractor().process(proc_input)
+            # proc_output = zip_extractor.ZipExtractor().process(proc_input)
         else:
             logging.error('Error: unknown/unsupported file type of [%s]', file_type)
             return
