@@ -3,10 +3,12 @@ from subprocess import call
 import os
 
 __author__ = 'devin'
+GPGBINARY = os.environ.get('GPGBINARY', 'gpg')
+if not os.path.exists(GPGBINARY):
+    GPGBINARY = "/usr/local/bin/gpg"
+
 
 class GPGExtractor(object):
-
-    gpg_executable_path = "/usr/local/bin/gpg"
 
     def requires(self):
         return ['filename']
@@ -20,6 +22,6 @@ class GPGExtractor(object):
 
         extracted_files_dir = tempfile.mkdtemp()
 
-        call([self.gpg_executable_path, '-d', filename, '-o', os.path.join(extracted_files_dir,out_filename)])
+        call([GPGBINARY, '-d', filename, '-o', os.path.join(extracted_files_dir,out_filename)])
 
         return {'extracted_files_dir': extracted_files_dir}
