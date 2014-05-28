@@ -14,6 +14,6 @@ class SevenZipExtractor(object):
     def process(self,input):
         path = input['filename']
         tmpDir = tempfile.mkdtemp(prefix='tmp',suffix='un7zip')
-        subprocess.check_call(['cp',path,tmpDir])
-        subprocess.check_call(['7za', 'x', path])
+        print(tmpDir)
+        subprocess.check_call(['7za', 'x', path, '-o'+tmpDir])
         return {'extracted_files_directory':tmpDir}

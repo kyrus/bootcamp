@@ -29,7 +29,6 @@ def have_file_type(context, file_type):
 
 @when(u'I run the extractor "(?P<extractor_type>.*)"')
 def run_extractor(context, extractor_type):
-    print(extractor_type)
     if extractor_type == 'Zip':
         extractor = bootcamp.zip_extractor.ZipExtractor()
     elif extractor_type == 'Gzip':
