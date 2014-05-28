@@ -1,6 +1,7 @@
 __author__ = 'taylormattison'
 
 import tempfile
+import subprocess
 
 class TarExtractor:
 
@@ -17,4 +18,4 @@ class TarExtractor:
         subprocess.call(['tar','-xf', inFileLocation, '-C', temporaryDirectory])
         return {
             'extracted_files_directory': temporaryDirectory
-        }t
+        }

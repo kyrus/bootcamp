@@ -3,6 +3,7 @@ import os
 import zip_extractor
 import gzip_extractor
 import rar_extractor
+import tar_extractor
 
 from utils import *
 
@@ -60,7 +61,7 @@ class Extractomatic(object):
             proc_output = gzip_extractor.gzip_extractor().process(proc_input)
         elif file_type == 'POSIX tar archive':
             logging.info('Unarchiving as a [%s] file', file_type)
-            # proc_output = tar_extractor.TarExtractor().process(proc_input)
+            proc_output = tar_extractor.TarExtractor().process(proc_input)
         elif file_type == 'data' and extension == '.gpg':
             logging.info('Unarchiving as a GPG file')
             # proc_output = GPGExtractor.GPGExtractor().process(proc_input)
