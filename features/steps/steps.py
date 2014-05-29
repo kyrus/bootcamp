@@ -3,7 +3,6 @@ import os
 from behave import *
 
 import bootcamp
-import bootcamp.zip_extractor
 
 
 use_step_matcher('re')
@@ -35,6 +34,8 @@ def run_extractor(context, extractor_type):
         extractor = bootcamp.GzipExtractor.GzipExtractor()
     elif extractor_type == '7zip':
         extractor = bootcamp.seven_zip_extractor.SevenZipExtractor()
+    elif extractor_type == 'Tar':
+        extractor = bootcamp.tar_extractor.TarExtractor()
     else:
         raise Exception('Unknown extractor type')
 

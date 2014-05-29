@@ -10,3 +10,4 @@ Examples:
     |  zip             |  Zip       |
     |  gz              |  Gzip      |
     |  7z              |  7zip      |
+    |  tar             |  Tar       |
