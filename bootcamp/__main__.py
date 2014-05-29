@@ -22,7 +22,7 @@ def main(args=sys.argv[1:]):
 
     # extract the files
     for archive_file in args:
-        bootcamp.Extractomatic().extract_files(archive_file)
+        bootcamp.Extractomatic().extract_file(archive_file)
 
 
 if __name__ == '__main__':

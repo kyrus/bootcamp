@@ -16,6 +16,7 @@ setup(
     test_suite='test',
     install_requires=[
         'behave',
+        'rarfile'
     ],
     dependency_links=[],
 )
