@@ -47,8 +47,4 @@ def run_extractor(context, extractor_type):
 def expect_directory(context):
     assert 'extracted_files_directory' in context.extraction_result
     assert os.path.isdir(context.extraction_result['extracted_files_directory'])
-    #gzip extractor names extracted file 'extracteddata'
-    if context.current_file[-2:] == 'gz':
-        assert os.path.isfile(os.path.join(context.extraction_result['extracted_files_directory'], 'extracteddata'))
-    else:
-        assert os.path.isfile(os.path.join(context.extraction_result['extracted_files_directory'], 'testfile.txt'))
+    assert os.path.isfile(os.path.join(context.extraction_result['extracted_files_directory'], 'testfile.txt'))
