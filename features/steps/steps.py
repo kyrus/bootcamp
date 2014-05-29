@@ -38,11 +38,17 @@ def run_extractor(context, extractor_type):
     else:
         raise Exception('Unknown extractor type')
 
+
     context.extraction_result = extractor.process({'filename': context.current_file})
+    print context.extraction_result
 
 
 @then(u'I should get a directory that contains the contents of the archive')
 def expect_directory(context):
     assert 'extracted_files_directory' in context.extraction_result
     assert os.path.isdir(context.extraction_result['extracted_files_directory'])
-    assert os.path.isfile(os.path.join(context.extraction_result['extracted_files_directory'], 'testfile.txt'))
+    #gzip extractor names extracted file 'extracteddata'
+    if context.current_file[-2:] == 'gz':
+        assert os.path.isfile(os.path.join(context.extraction_result['extracted_files_directory'], 'extracteddata'))
+    else:
+        assert os.path.isfile(os.path.join(context.extraction_result['extracted_files_directory'], 'testfile.txt'))

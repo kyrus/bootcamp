@@ -16,4 +16,5 @@ class GzipExtractor:
         d = tempfile.mkdtemp()
         t = open(d + "/extracteddata", "w+")
         t.write(file_content)
+        t.close()
         return {'extracted_files_directory': d}
