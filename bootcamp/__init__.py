@@ -82,7 +82,7 @@ class Extractomatic(object):
             return rar_extractor.RARFile()
         elif file_type == '7-zip archive data':
             logging.info('Unarchiving as a [%s] file', file_type)
-            # return seven_zip_extractor.SevenZipExtractor()
+            return seven_zip_extractor.SevenZipExtractor()
         else:
             logging.error('Error: unknown/unsupported file type of [%s]', file_type)
             return None
