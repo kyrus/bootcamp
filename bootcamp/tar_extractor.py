@@ -3,7 +3,8 @@ __author__ = 'taylormattison'
 import tempfile
 import subprocess
 
-class TarExtractor:
+
+class TarExtractor(object):
 
     def requires(self):
         return ['filename']
@@ -15,7 +16,7 @@ class TarExtractor:
         inFileLocation = input['filename']
         temporaryDirectory = tempfile.mkdtemp()
 
-        subprocess.call(['tar','-xf', inFileLocation, '-C', temporaryDirectory])
+        subprocess.call(['tar', '-xf', inFileLocation, '-C', temporaryDirectory])
         return {
             'extracted_files_directory': temporaryDirectory
         }
